@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 /**
  * GET all records
  */
-router.get('/list', (req, res) => {
+router.get('/items', (req, res) => {
     // DB connection
     mongoose.connect(dbUrl);
 

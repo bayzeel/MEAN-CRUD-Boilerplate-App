@@ -5,26 +5,26 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ListComponent } from './list/list.component';
+import { ItemsComponent } from './items/items.component';
 
-import { ListService } from './list.service';
+import { ItemsService } from './items.service';
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'list',
+    redirectTo: 'items',
     pathMatch: 'full'
   },
   {
-    path: 'list',
-    component: ListComponent
+    path: 'items',
+    component: ItemsComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,7 @@ const ROUTES = [
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ListService],
+  providers: [ItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
