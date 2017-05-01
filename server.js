@@ -1,51 +1,53 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+/**
+ * Get dependencies
+ */
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
 
-var port = process.env.PORT || 3000;
+/**
+ * Get our API routes
+ */
+const api = require('./server/api/api');
 
-var Schema = mongoose.Schema;
+const app = express();
 
-var personSchema = new Schema({
-    firstName:  String,
-    lastName: String
+/**
+ * Parsers for POST data
+ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+/**
+ * Point static path to dist
+ */
+app.use(express.static(path.join(__dirname, 'dist')));
+
+/**
+ * Set our api routes
+ */
+app.use('/api', api);
+
+/**
+ * Catch all other routes and return the index file
+ */
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-var Person = mongoose.model('Person', personSchema);
+/**
+ * Get port from environment and store in Express.
+ */
+const port = process.env.PORT || '3000';
+app.set('port', port);
 
-var app = express();
-var jsonParser = bodyParser.json();
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
 
-app.use(express.static(__dirname + '/dist'));
-
-app.get("/api/list", function(req, res){
-    mongoose.connect('mongodb://localhost:27017/personBoilerplateDB');
-
-    Person.find({}, function(err, docs){
-        mongoose.disconnect();
-
-        if(err) return console.log(err);
-
-        console.log('docs', docs);
-    });
-    console.log('res', res);
-});
-
-app.listen(port, function(){
-    console.log('Server is connecting...');
-});
-
-
-/*var person1 = new Person({firstName: 'John', lastName: 'Doe'});
-var person2 = new Person({firstName: 'Jane', lastName: 'Doe'});
-
-person1.save(function(err){
-    if(err) return console.log(err);
-    console.log("Сохранен объект", person1);
-});
-person2.save(function(err){
-    mongoose.disconnect();
-
-    if(err) return console.log(err);
-    console.log("Сохранен объект", person2);
-});*/
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => console.log(`API running on localhost:${port}`));
