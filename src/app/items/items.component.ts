@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemsService } from '../items.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ItemsComponent implements OnInit {
 
   records: any = [];
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemsService: ItemsService, private router: Router) { }
 
   ngOnInit() {
     // Retrieve records from the API
@@ -19,4 +20,7 @@ export class ItemsComponent implements OnInit {
     });
   }
 
+  goToAddForm(): void {
+    this.router.navigate(['/add']);
+  }
 }

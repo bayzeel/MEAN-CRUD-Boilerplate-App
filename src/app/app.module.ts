@@ -6,8 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
+import { AddComponent } from './add/add.component';
 
 import { ItemsService } from './items.service';
+
 
 const ROUTES = [
   {
@@ -18,13 +20,18 @@ const ROUTES = [
   {
     path: 'items',
     component: ItemsComponent
+  },
+  {
+    path: 'add',
+    component: AddComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemsComponent
+    ItemsComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
