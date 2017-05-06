@@ -1,3 +1,21 @@
-<p>
-  add works!
-</p>
+<h4>Add item</h4>
+<form (ngSubmit)="addItem()" [formGroup]="addForm">
+  <div [ngClass]="['form-group', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'has-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) ? 'has-success' : '']">
+    <label>First Name</label>
+    <input type="text"
+           [ngClass]="['form-control', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'form-control-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) ? 'form-control-success' : '']"
+           formControlName="firstName">
+    <div class="form-control-feedback" *ngIf="firstNameCtrl.dirty && firstNameCtrl.hasError('required')">First Name is required</div>
+  </div>
+  <div [ngClass]="['form-group', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'has-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) ? 'has-success' : '']">
+    <label>Last Name</label>
+    <input type="text"
+           [ngClass]="['form-control', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'form-control-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) ? 'form-control-success' : '']"
+           formControlName="lastName">
+    <div class="form-control-feedback" *ngIf="lastNameCtrl.dirty && lastNameCtrl.hasError('required')">Last Name is required</div>
+  </div>
+  <div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!addForm.valid">Submit</button>
+    <!--<button type="reset" (click)="reset()">Reset</button>-->
+  </div>
+</form>
