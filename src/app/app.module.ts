@@ -10,6 +10,7 @@ import { ItemsComponent } from './items/items.component';
 import { AddComponent } from './add/add.component';
 
 import { ItemsService } from './items.service';
+import { AddService } from './add.service';
 
 
 const ROUTES = [
@@ -41,7 +42,10 @@ const ROUTES = [
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ItemsService],
+  providers: [
+    ItemsService,
+    AddService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

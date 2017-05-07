@@ -1,21 +1,27 @@
+<button class="btn btn-primary mb-5" (click)="goToItemList()">Go to the items list</button>
 <h4>Add item</h4>
-<form (ngSubmit)="addItem()" [formGroup]="addForm">
+<form (ngSubmit)="addItem(firstName.value, lastName.value)" [formGroup]="addForm">
   <div [ngClass]="['form-group', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'has-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) ? 'has-success' : '']">
     <label>First Name</label>
     <input type="text"
+           (focus)="isAlertSuccess = false"
            [ngClass]="['form-control', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'form-control-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) ? 'form-control-success' : '']"
-           formControlName="firstName">
+           formControlName="firstName" #firstName>
     <div class="form-control-feedback" *ngIf="firstNameCtrl.dirty && firstNameCtrl.hasError('required')">First Name is required</div>
   </div>
   <div [ngClass]="['form-group', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'has-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) ? 'has-success' : '']">
     <label>Last Name</label>
     <input type="text"
+           (focus)="isAlertSuccess = false"
            [ngClass]="['form-control', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'form-control-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) ? 'form-control-success' : '']"
-           formControlName="lastName">
+           formControlName="lastName" #lastName>
     <div class="form-control-feedback" *ngIf="lastNameCtrl.dirty && lastNameCtrl.hasError('required')">Last Name is required</div>
   </div>
   <div>
-    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!addForm.valid">Submit</button>
+    <button class="btn btn-primary btn-lg btn-block mb-3" type="submit" [disabled]="!addForm.valid">Submit</button>
     <!--<button type="reset" (click)="reset()">Reset</button>-->
+    <div class="alert alert-success" role="alert" *ngIf="isAlertSuccess">
+      <strong>Well done!</strong> You successfully added new item to the list.
+    </div>
   </div>
 </form>

@@ -4,6 +4,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const bodyParser = require('body-parser');
 
 const dbUrl = 'mongodb://localhost:27017/personBoilerplateDB';
 
@@ -15,6 +16,8 @@ const personSchema = new Schema({
 });
 
 const Person = mongoose.model('Person', personSchema);
+
+var jsonParser = bodyParser.json();
 
 /**
  * GET api listing
@@ -38,5 +41,16 @@ router.get('/items', (req, res) => {
         res.status(200).send(records);
     });
 });
+
+/**
+ * POST item
+ */
+router.post('/add', jsonParser, (req, res) => {
+    if(!req.body) return res.sendStatus(400);
+
+    console.log(req.body);
+    res.send(req.body);
+});
+
 
 module.exports = router;
