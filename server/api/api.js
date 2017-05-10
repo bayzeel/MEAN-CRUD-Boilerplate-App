@@ -48,8 +48,15 @@ router.get('/items', (req, res) => {
 router.post('/add', jsonParser, (req, res) => {
     if(!req.body) return res.sendStatus(400);
 
-    console.log(req.body);
-    res.send(req.body);
+    mongoose.connect(dbUrl);
+
+    Person.create(req.body, (err, record) => {
+        mongoose.disconnect();
+
+        if(err) return console.log(err);
+        
+        res.send(req.body);
+    });
 });
 
 
