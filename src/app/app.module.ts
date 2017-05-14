@@ -8,9 +8,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 import { AddComponent } from './add/add.component';
+import { DeleteComponent } from './delete/delete.component';
 
 import { ItemsService } from './items.service';
+import { OneItemService } from './one-item.service';
 import { AddService } from './add.service';
+import { DeleteService } from "./delete.service";
 
 
 const ROUTES = [
@@ -26,6 +29,10 @@ const ROUTES = [
   {
     path: 'add',
     component: AddComponent
+  },
+  {
+    path: 'delete/:itemID',
+    component: DeleteComponent
   }
 ];
 
@@ -33,7 +40,8 @@ const ROUTES = [
   declarations: [
     AppComponent,
     ItemsComponent,
-    AddComponent
+    AddComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,9 @@ const ROUTES = [
   ],
   providers: [
     ItemsService,
-    AddService
+    OneItemService,
+    AddService,
+    DeleteService
   ],
   bootstrap: [AppComponent]
 })

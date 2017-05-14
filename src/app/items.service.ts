@@ -8,8 +8,8 @@ export class ItemsService {
   constructor(private http: Http) { }
 
   // Get all records from the API
-  getAllRecords() {
-    return this.http.get('/api/items')
+  getAllRecords(url: string) {
+    return this.http.get(`/api/${url}`)
         .map(res => {
           return res.json();
         });

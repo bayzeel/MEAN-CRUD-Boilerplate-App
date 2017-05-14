@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 //import "rxjx/add/operator/debounceTime";
 //import "rxjx/add/operator/distingUntilChanged";
 
+import { Item } from '../item';
+
 import { AddService } from '../add.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class AddComponent implements OnInit {
   addForm: FormGroup;
   firstNameCtrl: FormControl;
   lastNameCtrl: FormControl;
+  itemID: number = 0;
 
   isAlertSuccess: boolean = false;
 
@@ -29,6 +32,7 @@ export class AddComponent implements OnInit {
   }
 
   addItem(firstName: string, lastName: string): void {
+
     firstName = firstName.trim();
     lastName = lastName.trim();
 
@@ -36,7 +40,7 @@ export class AddComponent implements OnInit {
       return
     }
 
-    this.addService.create(firstName, lastName).then(() => {
+    this.addService.create(this.itemID, firstName, lastName).then(() => {
       this.firstNameCtrl.reset('');
       this.lastNameCtrl.reset('');
 

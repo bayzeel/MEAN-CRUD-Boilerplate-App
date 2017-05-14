@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
-
-import { Item } from './item';
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AddService {
-  private addItemUrl = '/api/add';
+export class DeleteService {
+  deleteItemId: any = '';
+  private deleteItemUrl = '/api/delete';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
-  create(itemID: number, firstName: string, lastName: string): Promise<Item> {
-    return this.http
-        .post(this.addItemUrl, JSON.stringify({itemID: itemID, firstName: firstName, lastName: lastName}), {headers: this.headers})
+  deleteItem(itemID): Promise<void> {
+    //const url = `${this.heroesUrl}/${id}`;
+    return this.http.delete(`${this.deleteItemUrl}/${itemID}`, {headers: this.headers})
         .toPromise()
-        .then(res => res.json().data as Item)
+        .then(() => null)
         .catch(this.handleError);
   }
 
@@ -24,5 +22,4 @@ export class AddService {
     console.log('An error occurred', error);
     return Promise.reject(error.message || error);
   }
-
 }

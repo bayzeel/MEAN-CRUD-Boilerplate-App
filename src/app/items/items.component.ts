@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ItemsService } from '../items.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
@@ -15,12 +15,16 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     // Retrieve records from the API
-    this.itemsService.getAllRecords().subscribe(records => {
+    this.itemsService.getAllRecords('items').subscribe(records => {
       this.records = records;
     });
   }
 
   goToAddForm(): void {
     this.router.navigate(['/add']);
+  }
+
+  renderDeleteConfirm(itemID: number): void {
+    this.router.navigate(['/delete', itemID]);
   }
 }
