@@ -15,7 +15,7 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit() {
     // Retrieve records from the API
-    this.itemsService.getAllRecords('items').subscribe(records => {
+    this.itemsService.getAllRecords('items').then(records => {
       this.records = records;
     });
   }
