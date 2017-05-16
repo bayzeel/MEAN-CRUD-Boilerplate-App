@@ -3,9 +3,9 @@
   <div class="col-sm-12 mb-3">
     <div class="card text-center" *ngIf="item.itemID && !isDeleted">
       <div class="card-block">
-        <h4 class="card-title">Do you want to delete item: {{item.firstName}} {{item.lastName}}.</h4>
-        <a href="#" class="card-link" (click)="$event.preventDefault(); $event.stopPropagation(); deleteItem(item.itemID)">Delete</a>
-        <a href="#" class="card-link" (click)="$event.preventDefault(); $event.stopPropagation(); goToItemList()">Cancel</a>
+        <h4 class="card-title">Do you want to delete the item: {{item.firstName}} {{item.lastName}}</h4>
+        <button class="btn btn-link btn-sm" title="Confirm deletion of the item: {{item.firstName}} {{item.lastName}}" (click)="$event.preventDefault(); $event.stopPropagation(); deleteItem(item.itemID)">Delete</button>
+        <button class="btn btn-link btn-sm" title="Cancel deletion" (click)="$event.preventDefault(); $event.stopPropagation(); goToItemList()">Cancel</button>
       </div>
     </div><!-- / .card -->
     <div class="card text-center" *ngIf="!item.itemID">

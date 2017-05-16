@@ -6,8 +6,8 @@
     <div class="card text-center">
       <div class="card-block">
         <h4 class="card-title">{{record.itemID}} {{record.firstName}} {{record.lastName}}</h4>
-        <a href="#edit" class="card-link">Edit</a>
-        <a href="#delete" class="card-link" (click)="$event.preventDefault(); $event.stopPropagation(); renderDeleteConfirm(record.itemID)">Delete</a>
+        <button class="btn btn-link btn-sm" title="Edit the item: {{record.firstName}} {{record.lastName}}">Edit</button>
+        <button class="btn btn-link btn-sm" title="Delete the item: {{record.firstName}} {{record.lastName}}" (click)="$event.preventDefault(); $event.stopPropagation(); renderDeleteConfirm(record.itemID)">Delete</button>
       </div>
     </div><!-- / .card -->
   </div><!-- / .col -->
