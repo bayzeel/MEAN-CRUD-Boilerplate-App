@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -20,11 +20,18 @@ export class DeleteComponent implements OnInit {
       lastName: ''
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private oneItemService: OneItemService, private deleteService: DeleteService) { }
+  isDeleted: boolean = false;
 
-  /*deleteItem(userID: number) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private oneItemService: OneItemService, private deleteService: DeleteService) { }
+
+  deleteItem(userID: number) {
     this.deleteService.deleteItem(userID);
-  }*/
+    this.isDeleted = true;
+  }
+
+  goToItemList() {
+    this.router.navigate(['/items']);
+  }
 
   ngOnInit(): void {
     this.activatedRoute

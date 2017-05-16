@@ -94,21 +94,21 @@ router.post('/add', jsonParser, (req, res) => {
     });
 });
 
-/*router.delete('/delete/:userID', (req, res) => {
-    let userID = req.params.userID;
+router.delete('/delete/:itemID', (req, res) => {
+    let itemIDParam = req.params.itemID;
     // DB connection
     mongoose.connect(dbUrl);
 
-    Person.findOneAndRemove({userID: userID}, (err, record) => {
+    Person.findOneAndRemove({itemID: itemIDParam}, (err, record) => {
         mongoose.disconnect();
 
         if(err) return console.log(err);
 
-        console.log(record + ' has been successfully deleted');
+        // console.log(record + ' has been successfully deleted');
 
         res.status(200).send(record);
     });
-});*/
+});
 
 
 module.exports = router;

@@ -11,8 +11,8 @@ export class DeleteService {
   constructor(private http: Http) { }
 
   deleteItem(itemID): Promise<void> {
-    //const url = `${this.heroesUrl}/${id}`;
-    return this.http.delete(`${this.deleteItemUrl}/${itemID}`, {headers: this.headers})
+    const url = `${this.deleteItemUrl}/${itemID}`;
+    return this.http.delete(url, {headers: this.headers})
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
