@@ -8,13 +8,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 
 import { ItemsService } from './items.service';
 import { OneItemService } from './one-item.service';
 import { AddService } from './add.service';
-import { DeleteService } from "./delete.service";
-
+import { EditService } from './edit.service';
+import { DeleteService } from './delete.service';
 
 const ROUTES = [
   {
@@ -31,6 +32,10 @@ const ROUTES = [
     component: AddComponent
   },
   {
+    path: 'edit/:itemID',
+    component: EditComponent
+  },
+  {
     path: 'delete/:itemID',
     component: DeleteComponent
   }
@@ -41,6 +46,7 @@ const ROUTES = [
     AppComponent,
     ItemsComponent,
     AddComponent,
+    EditComponent,
     DeleteComponent
   ],
   imports: [
@@ -54,6 +60,7 @@ const ROUTES = [
     ItemsService,
     OneItemService,
     AddService,
+    EditService,
     DeleteService
   ],
   bootstrap: [AppComponent]

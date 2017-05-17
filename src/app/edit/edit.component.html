@@ -1,0 +1,38 @@
+<button class="btn btn-primary mb-5" (click)="goToItemList()">Go to the items list</button>
+<div class="card text-center" *ngIf="!item.itemID; else elseBlock">
+  <div class="card-block">
+    <h4 class="card-title">Item doesn't exist</h4>
+  </div>
+</div><!-- / .card -->
+
+<ng-template #elseBlock>
+  <form [formGroup]="updateForm">
+    <div [ngClass]="['form-group', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'has-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) || firstNameCtrl.pristine ? 'has-success' : '']">
+      <label>First Name</label>
+      <input type="text"
+             (keyup)="isEdited = false"
+             [ngClass]="['form-control', (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) ? 'form-control-danger' : '', (firstNameCtrl.valid && !firstNameCtrl.hasError('required')) || firstNameCtrl.pristine ? 'form-control-success' : '']"
+             formControlName="firstName" #firstName [(ngModel)]="item.firstName">
+      <div class="form-control-feedback" *ngIf="firstNameCtrl.dirty && firstNameCtrl.hasError('required')">First Name is required</div>
+    </div>
+    <div [ngClass]="['form-group', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'has-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) || lastNameCtrl.pristine ? 'has-success' : '']">
+      <label>Last Name</label>
+      <input type="text"
+             (keyup)="isEdited = false"
+             [ngClass]="['form-control', (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) ? 'form-control-danger' : '', (lastNameCtrl.valid && !lastNameCtrl.hasError('required')) || lastNameCtrl.pristine ? 'form-control-success' : '']"
+             formControlName="lastName" #lastName [(ngModel)]="item.lastName">
+      <div class="form-control-feedback" *ngIf="lastNameCtrl.dirty && lastNameCtrl.hasError('required')">Last Name is required</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 mb-3">
+        <div *ngIf="item.itemID && !isEdited">
+          <button type="button" class="btn btn-lg btn-primary btn-block mb-3" title="Save changes" (click)="save(item.firstName, item.lastName)" [disabled]="!updateForm.valid || updateForm.pristine">Save changes</button>
+          <button type="button" class="btn btn-lg btn-primary btn-block mb-3" title="Cancel changes" (click)="goToItemList()">Cancel</button>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="isEdited">
+          <strong>Well done!</strong> Changes have been saved.
+        </div>
+      </div><!-- / .col -->
+    </div><!-- / .row -->
+  </form>
+</ng-template>

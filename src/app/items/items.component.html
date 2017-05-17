@@ -5,9 +5,9 @@
   <div class="col-sm-12 mb-3" *ngFor="let record of records">
     <div class="card text-center">
       <div class="card-block">
-        <h4 class="card-title">{{record.itemID}} {{record.firstName}} {{record.lastName}}</h4>
-        <button class="btn btn-link btn-sm" title="Edit the item: {{record.firstName}} {{record.lastName}}">Edit</button>
-        <button class="btn btn-link btn-sm" title="Delete the item: {{record.firstName}} {{record.lastName}}" (click)="$event.preventDefault(); $event.stopPropagation(); renderDeleteConfirm(record.itemID)">Delete</button>
+        <h4 class="card-title">{{record.firstName}} {{record.lastName}}</h4>
+        <button type="button" class="btn btn-link btn-sm" title="Edit the item: {{record.firstName}} {{record.lastName}}" (click)="renderEditingComponent(record.itemID)">Edit</button>
+        <button type="button" class="btn btn-link btn-sm" title="Delete the item: {{record.firstName}} {{record.lastName}}" (click)="renderDeletingComponent(record.itemID)">Delete</button>
       </div>
     </div><!-- / .card -->
   </div><!-- / .col -->

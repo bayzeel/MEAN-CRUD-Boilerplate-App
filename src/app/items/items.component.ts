@@ -24,7 +24,11 @@ export class ItemsComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
-  renderDeleteConfirm(itemID: number): void {
+  renderEditingComponent(itemID: number): void {
+    this.router.navigate(['/edit', itemID]);
+  }
+
+  renderDeletingComponent(itemID: number): void {
     this.router.navigate(['/delete', itemID]);
   }
 }

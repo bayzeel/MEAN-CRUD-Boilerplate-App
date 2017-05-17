@@ -2,18 +2,20 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+import { Item } from './item';
+
 @Injectable()
-export class DeleteService {
-  private deleteItemUrl = '/api/delete';
+export class EditService {
+  private updateItemUrl = '/api/edit';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor( private http: Http ) { }
 
-  deleteItem(itemID): Promise<void> {
-    const url = `${this.deleteItemUrl}/${itemID}`;
-    return this.http.delete(url, {headers: this.headers})
+  updateItem(item: Item): Promise<Item> {
+    const url = `${this.updateItemUrl}/${item.itemID}`;
+    return this.http.put(url, JSON.stringify(item), {headers: this.headers})
         .toPromise()
-        .then(() => null)
+        .then(() => item)
         .catch(this.handleError);
   }
 

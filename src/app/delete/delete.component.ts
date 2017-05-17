@@ -24,8 +24,8 @@ export class DeleteComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private oneItemService: OneItemService, private deleteService: DeleteService) { }
 
-  deleteItem(userID: number) {
-    this.deleteService.deleteItem(userID);
+  deleteItem(itemID: number) {
+    this.deleteService.deleteItem(itemID);
     this.isDeleted = true;
   }
 

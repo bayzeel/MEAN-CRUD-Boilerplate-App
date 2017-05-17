@@ -4,8 +4,8 @@
     <div class="card text-center" *ngIf="item.itemID && !isDeleted">
       <div class="card-block">
         <h4 class="card-title">Do you want to delete the item: {{item.firstName}} {{item.lastName}}</h4>
-        <button class="btn btn-link btn-sm" title="Confirm deletion of the item: {{item.firstName}} {{item.lastName}}" (click)="$event.preventDefault(); $event.stopPropagation(); deleteItem(item.itemID)">Delete</button>
-        <button class="btn btn-link btn-sm" title="Cancel deletion" (click)="$event.preventDefault(); $event.stopPropagation(); goToItemList()">Cancel</button>
+        <button type="button" class="btn btn-link btn-sm" title="Confirm deletion of the item: {{item.firstName}} {{item.lastName}}" (click)="deleteItem(item.itemID)">Delete</button>
+        <button type="button" class="btn btn-link btn-sm" title="Cancel deletion" (click)="goToItemList()">Cancel</button>
       </div>
     </div><!-- / .card -->
     <div class="card text-center" *ngIf="!item.itemID">
@@ -14,7 +14,7 @@
       </div>
     </div><!-- / .card -->
     <div class="alert alert-success" role="alert" *ngIf="isDeleted">
-      <strong>Well done!</strong> You've just successfully deleted item: {{item.firstName}} {{item.lastName}}.
+      <strong>Well done!</strong> You've just successfully deleted the item: {{item.firstName}} {{item.lastName}}.
     </div>
   </div><!-- / .col -->
 </div><!-- / .row -->

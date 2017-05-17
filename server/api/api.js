@@ -44,9 +44,27 @@ router.get('/items', (req, res) => {
 });
 
 /**
- * GET one record
+ * GET one record for deleting
  */
 router.get('/delete/:itemID', (req, res) => {
+    let itemIDParam = req.params.itemID;
+
+    // DB connection
+    mongoose.connect(dbUrl);
+
+    Person.findOne({itemID: itemIDParam}, (err, record) => {
+        mongoose.disconnect();
+
+        if(err) return console.log(err);
+
+        res.status(200).send(record);
+    });
+});
+
+/**
+ * GET one record for editing
+ */
+router.get('/edit/:itemID', (req, res) => {
     let itemIDParam = req.params.itemID;
 
     // DB connection
@@ -94,6 +112,9 @@ router.post('/add', jsonParser, (req, res) => {
     });
 });
 
+/**
+ * DELETE item
+ */
 router.delete('/delete/:itemID', (req, res) => {
     let itemIDParam = req.params.itemID;
     // DB connection
@@ -104,7 +125,24 @@ router.delete('/delete/:itemID', (req, res) => {
 
         if(err) return console.log(err);
 
-        // console.log(record + ' has been successfully deleted');
+        res.status(200).send(record);
+    });
+});
+
+/**
+ * UPDATE/EDIT item
+ */
+router.put('/edit/:itemID', (req, res) => {
+    let itemIDParam = req.params.itemID;
+    let firstNameParam = req.body.firstName;
+    let lastNameParam = req.body.lastName;
+    // DB connection
+    mongoose.connect(dbUrl);
+
+    Person.update({itemID: itemIDParam}, {firstName: firstNameParam, lastName: lastNameParam}, (err, record) => {
+        mongoose.disconnect();
+
+        if(err) return console.log(err);
 
         res.status(200).send(record);
     });
